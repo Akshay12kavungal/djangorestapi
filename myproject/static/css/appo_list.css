@@ -1,0 +1,28 @@
+
+
+/* Style for the list group */
+.list-group {
+    margin-bottom: 30px;
+}
+
+/* Style for list group items */
+.list-group-item {
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Style for the appointment heading */
+.list-group-item h5 {
+    margin-bottom: 5px;
+}
+
+/* Style for the small text */
+.list-group-item small {
+    color: #6c757d; /* Dim gray color */
+}
+
+/* Style for the patient details */
+.list-group-item p {
+    margin-bottom: 5px;
+}

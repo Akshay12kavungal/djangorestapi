@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Contact
+{% endblock %}
+
+{% block content %}
+<div class="container form-container">
+  <h1 class="text-center mb-4">Contact</h1> 
+  <hr>
+  
+  
+      <form action="{% url 'contact' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="row mb-3">
+          <label for="id_name"  class="col-sm-3 col-form-label">Name:</label>
+          <div class="col-sm-9">  
+              {{ cont_form.name }}
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label for="id_email"  class="col-sm-3 col-form-label">Email:</label>
+          <div class="col-sm-9">  
+              {{ cont_form.email }}
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label for="id_message"  class="col-sm-3 col-form-label">Message:</label>
+          <div class="col-sm-9">  
+              {{ cont_form.message }}
+          </div>
+        </div>
+
+    
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
