@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
-from .forms import DoctorForm
-from customer.models import Doctors
+from .forms import DoctorForm,DepartmentsForm
+from customer.models import Doctors,Departments
 
 
 
@@ -17,7 +17,7 @@ def add_doctor(request):
         form = DoctorForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('adminhome')  
+            return redirect('doctors_list')  
     else:
         form = DoctorForm()
     return render(request, 'admin/add_doctor.html', {'form': form})
@@ -25,3 +25,22 @@ def add_doctor(request):
 def doctors_list(request):
     doctors = Doctors.objects.all()
     return render(request, 'admin/doctors_list.html', {'doctors': doctors})
+
+
+
+def add_departments(request):
+    if request.method=="POST":
+        cont_form=DepartmentsForm(request.POST)
+        if cont_form.is_valid():
+            cont_form.save()
+            return redirect('adminhome')
+    cont_form=DepartmentsForm()
+    dict_form={
+        'cont_form':cont_form
+    }
+    return render(request,'admin/add_departments.html',dict_form)
+
+
+def departments_list(request):
+    dept = Departments.objects.all()
+    return render(request, 'admin/departments_list.html', {'dept': dept})
