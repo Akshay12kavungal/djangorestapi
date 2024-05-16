@@ -1,0 +1,40 @@
+/* profile.css */
+.profile-container {
+  background-color: #f8f9fa;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  margin: 0 auto; /* Center the container horizontally */
+}
+/* Center the profile picture */
+.card-body.text-center img {
+    display: block;
+    margin: 0 auto;
+  }
+  
+/* Style the card containing user details */
+.profile-card {
+border: 1px solid #e5e5e5;
+border-radius: 10px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the list group */
+.profile-details .list-group-item {
+border: none;
+}
+
+/* Style the "Update Profile" button */
+.update-button {
+
+width: 100%;
+padding: 10px;
+background-color: #0dc926;
+color: #fff;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+
+}

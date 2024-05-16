@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+About Kim's Hospital
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="container">
+    <h1>About Kim's Hospital</h1>
+    <p>Welcome to Kim's Hospital! We are committed to providing exceptional healthcare services to our patients and the community.</p>
+    <p>At Kim's Hospital, we prioritize patient care and safety above all else. Our team of highly skilled healthcare professionals is dedicated to delivering personalized and compassionate care to every patient who walks through our doors.</p>
+    <p>With state-of-the-art facilities and advanced medical technology, we offer a wide range of medical services, including emergency care, diagnostic imaging, surgery, and specialized treatments across various medical specialties.</p>
+    <p>Our mission is to promote health and well-being by providing quality healthcare services that meet the needs of our diverse patient population.</p>
+    <p>Thank you for choosing Kim's Hospital for your healthcare needs. We are honored to serve you and your family.</p>
+
+    <h2>Our Facilities</h2>
+      <p>Kim's Hospital boasts modern facilities equipped with cutting-edge technology to ensure the best possible care for our patients.</p>
+      <img src="{% static '/images/carasole1.jpg'%}" alt="Hospital Facility" style="width: 100%; max-width: 600px;">
+      <p>Our facilities include:</p>
+      <ul>
+          <li>State-of-the-art operating theaters</li>
+          <li>Advanced diagnostic imaging center</li>
+          <li>Specialized treatment units</li>
+          <li>Comfortable patient rooms</li>
+      </ul>
+
+    <h2>Our Team</h2>
+    <p>Meet our dedicated team of healthcare professionals who are committed to your well-being:</p>
+    <img src="{% static '/images/doctors1.jpg'%}"  alt="Medical Team" style="width: 100%; max-width: 600px;">
+    <p>Our team comprises experienced physicians, nurses, technicians, and support staff who work together to provide comprehensive care tailored to your needs.</p>
+
+</div>
+{% endblock %}

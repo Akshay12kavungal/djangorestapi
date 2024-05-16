@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Department 
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container profile-container">
+    <h1 class="text-center">Our Departments</h1> 
+    <hr>
+
+    <div class="list-group">
+        {% for d in dept %}
+        <a href="#" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ d.dep_name }}</h5>
+            </div>
+            <p class="mb-1">{{ d.dep_description }}</p>
+        </a>
+        {% empty %}
+        <div class="list-group-item">
+            No departments available.
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
