@@ -20,12 +20,6 @@ urlpatterns = [
     path('profile/update/', views.profile_update, name='profile_update'),
     path('my_appointments/', views.my_appointments, name='my_appointments'),
    
-
-    
-    
-
-
-
   
 
 ]

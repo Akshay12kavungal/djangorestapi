@@ -7,14 +7,14 @@ from .models import Departments,Doctors,Booking,Profile,Contact
 from .forms import BookingForm,RegistrationForm,ContactForm,ProfileUpdateForm
 
 from django.contrib.auth import authenticate,login,logout
-from django.http import JsonResponse
+
 
 
 def index(request):
-    return render(request,'index.html')
+    return render(request,'customer/index.html')
 
 def home(request):
-    return render(request,'home.html')
+    return render(request,'customer/home.html')
 
 def Register(request):
     if request.method == "POST":
@@ -32,7 +32,7 @@ def Register(request):
             return redirect('login')
     else:
         user_form = RegistrationForm()
-    return render(request, 'registration.html', {'user_form': user_form})
+    return render(request, 'customer/registration.html', {'user_form': user_form})
    
 
 def Login(request):
@@ -43,32 +43,32 @@ def Login(request):
         user= authenticate(username=username,password=password)
         if user is not None:
             login(request,user)
-            return render(request,'index.html')
+            return render(request,'customer/index.html')
 
         else:
-            return render(request,'login.html')
+            return render(request,'customer/login.html')
 
     else:
-        return render(request,'login.html')
+        return render(request,'customer/login.html')
 
 def Logout(request):
     logout(request)
     return redirect('home')
 
 def about(request):
-    return render(request,'about.html')
+    return render(request,'customer/about.html')
 
 def booking(request):
     if request.method =="POST":
         form =BookingForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request,'conformation.html')
+            return render(request,'customer/conformation.html')
     form= BookingForm()
     dict_form ={
         'form': form
     }
-    return render(request,'booking.html',dict_form)
+    return render(request,'customer/booking.html',dict_form)
 
 def doctors(request):
 
@@ -76,7 +76,7 @@ def doctors(request):
         'doctors': Doctors.objects.all()
     }
 
-    return render(request,'doctors.html',dict_docs)
+    return render(request,'customer/doctors.html',dict_docs)
 
 def contact(request):
     if request.method=="POST":
@@ -88,7 +88,7 @@ def contact(request):
     dict_form={
         'cont_form':cont_form
     }
-    return render(request,'contact.html',dict_form)
+    return render(request,'customer/contact.html',dict_form)
 
 def departments(request):
 
@@ -96,7 +96,7 @@ def departments(request):
         'dept':Departments.objects.all()
     }
     
-    return render(request,'departments.html',dict_dept)
+    return render(request,'customer/departments.html',dict_dept)
 
 
 
@@ -105,7 +105,7 @@ def departments(request):
 def profile(request):
     user = request.user
     profile = user.profile 
-    return render(request, 'profile.html', {'user': user, 'profile': profile})
+    return render(request, 'customer/profile.html', {'user': user, 'profile': profile})
 
 
 def profile_update(request):
@@ -118,11 +118,11 @@ def profile_update(request):
             return redirect('profile')
     else:
         form = ProfileUpdateForm(instance=profile)
-    return render(request, 'profile_update.html', {'form': form})
+    return render(request, 'customer/profile_update.html', {'form': form})
 
 
 def my_appointments(request):
     user_bookings = Booking.objects.filter(user=request.user)
-    return render(request, 'my_appointments.html', {'user_bookings': user_bookings})
+    return render(request, 'customer/my_appointments.html', {'user_bookings': user_bookings})
 
 
