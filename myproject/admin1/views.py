@@ -13,6 +13,10 @@ def adminhome(request):
     return render(request,'admin/home.html')
 
 
+
+
+
+
 def add_doctor(request):
     if request.method == 'POST':
         form = DoctorForm(request.POST, request.FILES)
