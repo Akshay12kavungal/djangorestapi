@@ -1,9 +1,9 @@
 from django.shortcuts import render,redirect
 from .forms import DoctorForm,DepartmentsForm
 from customer.models import Doctors,Departments,Booking,Profile
-from django.contrib.auth import authenticate,login,logout
-
-
+from django.shortcuts import render,redirect, get_object_or_404
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse
 
 
 # Create your views here.
@@ -17,20 +17,54 @@ def adminhome(request):
 
 
 
-def add_doctor(request):
-    if request.method == 'POST':
-        form = DoctorForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('doctors_list')  
-    else:
-        form = DoctorForm()
-    return render(request, 'admin/add_doctor.html', {'form': form})
+# def add_doctor(request):
+#     if request.method == 'POST':
+#         form = DoctorForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('doctors_list')  
+#     else:
+#         form = DoctorForm()
+#     return render(request, 'admin/add_doctor.html', {'form': form})
 
-def doctors_list(request):
-    doctors = Doctors.objects.all()
-    return render(request, 'admin/doctors_list.html', {'doctors': doctors})
+# def doctors_list(request):
+#     doctors = Doctors.objects.all()
+#     return render(request, 'admin/doctors_list.html', {'doctors': doctors})
 
+
+
+class DoctorListView(ListView):
+    model = Doctors
+    template_name = 'admin/doctor_list.html'
+    context_object_name = 'doctors'
+
+class DoctorDetailView(DetailView):
+    model = Doctors
+    template_name = 'admin/doctor_detail.html'
+    context_object_name = 'doctor'
+
+class DoctorCreateView(CreateView):
+    model = Doctors
+    template_name = 'admin/doctor_form.html'
+    fields = ['doc_name', 'doc_spec', 'dep_name','dep_image']
+
+    def get_success_url(self):
+        return reverse('doctor_list')
+
+class DoctorUpdateView(UpdateView):
+    model = Doctors
+    template_name = 'admin/doctor_form.html'
+    fields = ['doc_name', 'doc_spec', 'dep_name','dep_image']
+
+    def get_success_url(self):
+        return reverse('doctor_list')
+    
+class DoctorDeleteView(DeleteView):
+    model = Doctors
+    template_name = 'admin/doctor_confirm_delete.html'
+
+    def get_success_url(self):
+        return reverse('doctor_list')
 
 
 def add_departments(request):

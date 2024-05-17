@@ -9,13 +9,15 @@ Login
   <h1 class="text-center mb-4">Login page</h1> 
   <hr>
   
-  {% if messages %}
-    <ul class="messages">
-      {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
+{% if messages %}
+  <div class="messages">
+    {% for message in messages %}
+      <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
   
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
