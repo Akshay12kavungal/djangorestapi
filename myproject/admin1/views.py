@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from .forms import DoctorForm,DepartmentsForm
-from customer.models import Doctors,Departments
+from customer.models import Doctors,Departments,Booking,Profile
+from django.contrib.auth import authenticate,login,logout
 
 
 
@@ -44,3 +45,14 @@ def add_departments(request):
 def departments_list(request):
     dept = Departments.objects.all()
     return render(request, 'admin/departments_list.html', {'dept': dept})
+
+
+def booking_list(request):
+    booking=Booking.objects.all()
+    return render(request,'admin/booking_list.html',{'booking':booking})
+
+def profile_list(request):
+    profile=Profile.objects.all()
+    return render(request,'admin/profile_list.html',{'profile':profile})
+
+
