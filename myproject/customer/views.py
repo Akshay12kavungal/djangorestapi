@@ -7,11 +7,12 @@ from .models import Departments,Doctors,Booking,Profile,Contact
 from .forms import BookingForm,RegistrationForm,ContactForm,ProfileUpdateForm
 
 from django.contrib.auth import authenticate,login,logout
+from django.contrib import messages
 
 
 
-def index(request):
-    return render(request,'customer/index.html')
+def customerdashboard(request):
+    return render(request,'customer/customerdashboard.html')
 
 def home(request):
     return render(request,'customer/home.html')
@@ -32,24 +33,46 @@ def Register(request):
             return redirect('login')
     else:
         user_form = RegistrationForm()
-    return render(request, 'customer/registration.html', {'user_form': user_form})
-   
+    return render(request, 'registration/registration.html', {'user_form': user_form})
 
-def Login(request):
-    if request.method=='POST':
-        username=request.POST['username']
-        password=request.POST['password']
 
-        user= authenticate(username=username,password=password)
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        role = request.POST.get('role')
+
+        user = authenticate(request, username=username, password=password)
+
         if user is not None:
-            login(request,user)
-            return render(request,'customer/index.html')
-
+            if role == 'admin' and user.is_superuser:
+                login(request, user)
+                messages.success(request, 'You have successfully logged in as admin.')
+                return redirect('adminhome')
+            else:
+                login(request, user)
+                messages.success(request, 'You have successfully logged in as customer.')
+                return redirect('customerdashboard')
         else:
-            return render(request,'customer/login.html')
+            messages.error(request, 'Invalid username or password.')
 
-    else:
-        return render(request,'customer/login.html')
+    return render(request, 'registration/login.html')
+
+# def Login(request):
+#     if request.method=='POST':
+#         username=request.POST['username']
+#         password=request.POST['password']
+
+#         user= authenticate(username=username,password=password)
+#         if user is not None:
+#             login(request,user)
+#             return render(request,'customer/index.html')
+
+#         else:
+#             return render(request,'registration/login.html')
+
+#     else:
+#         return render(request,'registration/login.html')
 
 def Logout(request):
     logout(request)
