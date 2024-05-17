@@ -70,22 +70,22 @@
             <a class="nav-link" href="{% url 'adminhome' %}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'doctor_create' %}">Add Doctors</a>
+            <a class="nav-link" href="{% url 'doctor_list' %}">Doctors </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'doctor_list' %}">Doctors list</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'add_departments' %}">Add Deparment</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'departments_list' %}"> Deparments List</a>
+            <a class="nav-link" href="{% url 'departments_list' %}"> Deparments </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'booking_list' %}"> Appointments </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'profile_list' %}"> Profile List </a>
+            <a class="nav-link" href="{% url 'profile_list' %}"> User List </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"> {% if user.is_authenticated %} Profile: {{user.username}}
+
+              {%endif%}</a>
+
           </li>
       
       
@@ -114,10 +114,10 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8">
-          <h5 class="mb-0">Emergency Contact Number: 234-555-555</h5>
+          <h5 class="mb-0">Emergency Contact Number:+91-8137951236</h5>
         </div>
         <div class="col-md-4">
-          <p class="mb-0">© 2024 KIMS Hospital. All Rights Reserved</p>
+          <p class="mb-0">© 2024 Akshay Kavungal. All Rights Reserved</p>
         </div>
       </div>
     </div>
