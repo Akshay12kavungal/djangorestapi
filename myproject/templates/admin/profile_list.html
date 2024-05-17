@@ -1,34 +1,36 @@
-{% extends 'customer/base.html' %}
+{% extends 'admin/base.html' %}
 
 {% block title %}
-My Appointments
+Users list
 {% endblock %}
 
 {% block content %}
 <div class="container profile-container">
-    <h1 class="text-center mb-4">My Appointments</h1>
+    <h1 class="text-center mb-4">Users list</h1>
     <hr>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="list-group">
-                {% for booking in user_bookings %}
+                {% for users in profile %}
                 <div class="list-group-item list-group-item-action">
                     <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Appointment with {{ booking.doc_name }}</h5>
-                        <small>booking date: {{ booking.booking_date }}</small>
+                        <h5 class="mb-1">{{ forloop.counter }} </h5>
                         
                     </div>
-                    <p class="mb-1">Patient Name: {{ booking.p_name }}</p>
-                    <p class="mb-1">Patient Phone: {{ booking.p_phone }}</p>
-                    <p class="mb-1">Patient Email: {{ booking.p_email }}</p>
+                    <p class="mb-1"> Name: {{ users.user }}</p>
+                    <p class="mb-1"> Phone Numbeder: {{ users.phone_number }}</p>
+                    <p class="mb-1"> Email: {{ users.email }}</p>
                 </div>
                 {% empty %}
                 <div class="list-group-item">
-                    No appointments yet.
+                    No users yet.
                 </div>
                 {% endfor %}
             </div>
         </div>
+    </div>
+    <div class="text-center mt-4">
+        <p>Total Users: {{ profile|length }}</p>
     </div>
 </div>
 
