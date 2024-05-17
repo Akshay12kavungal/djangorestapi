@@ -1,0 +1,45 @@
+
+
+
+    {% extends 'admin/base.html' %}
+
+    {% block title %}
+    Doctor Details
+    {% endblock %}
+    
+    {% block content %}
+    <div class="container form-container">
+        <h1 class="text-center mb-4">Doctor Details</h1>
+        <hr>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card mb-3 profile-card">
+                    <div class="card-body text-center">
+                        {% if user.profile %}
+                            <img src="{{ doctor.dep_image.url }}" class="card-img-top img-thumbnail rounded" alt="Profile Picture" style="width: 250px; height: 200px; object-fit: cover;">
+                        {% else %}
+                            <p class="card-text">No profile picture available</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Name:</strong> {{doctor.doc_name  }}</li>
+                    <li class="list-group-item"><strong>Email:</strong> {{ doctor.doc_spec }}</li>
+                    <li class="list-group-item"><strong>Specialization:</strong> {{ doctor.dep_name  }}</li>
+                    
+                </ul>
+                <div class="text-center">
+                    <a href="{% url 'doctor_update' doctor.pk %}" class="btn btn-primary update-button">Edit</a>
+                    <form action="{% url 'doctor_delete' doctor.pk %}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" class="btn btn-danger" update-button value="Delete">
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    
