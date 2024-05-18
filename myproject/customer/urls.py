@@ -22,9 +22,9 @@ urlpatterns = [
     path('my_appointments/', views.my_appointments, name='my_appointments'),
 
     path('login/', login_view, name='login'),  # URL for the login page
-
-
+    #htmx
+    path('check_username/', views.check_username, name='check_username'),
    
-  
 
 ]
+

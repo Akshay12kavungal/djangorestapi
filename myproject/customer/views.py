@@ -9,6 +9,8 @@ from .forms import BookingForm,RegistrationForm,ContactForm,ProfileUpdateForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 
+from django.contrib.auth import get_user_model
+
 
 
 def customerdashboard(request):
@@ -34,6 +36,15 @@ def Register(request):
     else:
         user_form = RegistrationForm()
     return render(request, 'registration/registration.html', {'user_form': user_form})
+
+def check_username(request):
+    username=request.POST.get('username')
+    if get_user_model().objects.filter(username=username).exists():
+        return HttpResponse("<div style='color:red;'>The username already exists")
+
+    else:
+        return HttpResponse("<div style='color:green;'>The username is available")
+
 
 
 def login_view(request):

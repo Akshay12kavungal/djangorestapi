@@ -24,7 +24,7 @@ urlpatterns = [
 
     #department
     path('add_departments/', views.add_departments, name='add_departments'),
-    path('departments_list/', views.departments_list, name='departments_list'),
+    path('departments_list/', views.departments_list.as_view(), name='departments_list'),
     path('booking_list/', views.booking_list, name='booking_list'),
     path('profile_list/', views.profile_list, name='profile_list'),
 
