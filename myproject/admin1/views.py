@@ -1,3 +1,5 @@
+from typing import Any
+from django.db.models.query import QuerySet
 from django.shortcuts import render,redirect
 from .forms import DoctorForm,DepartmentsForm
 from customer.models import Doctors,Departments,Booking,Profile
@@ -72,17 +74,19 @@ def add_departments(request):
         cont_form=DepartmentsForm(request.POST)
         if cont_form.is_valid():
             cont_form.save()
-            return redirect('adminhome')
+            return redirect('departments_list')
     cont_form=DepartmentsForm()
     dict_form={
         'cont_form':cont_form
     }
     return render(request,'admin/add_departments.html',dict_form)
 
+class departments_list(ListView):
+    template_name ='admin/departments_list.html'
+    model=Departments
+    context_object_name='dept'
+ 
 
-def departments_list(request):
-    dept = Departments.objects.all()
-    return render(request, 'admin/departments_list.html', {'dept': dept})
 
 
 def booking_list(request):
