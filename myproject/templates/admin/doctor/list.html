@@ -1,9 +1,41 @@
+<!-- templates/admin/doctor2/list.html -->
 {% extends "admin/base.html" %}
 {% load django_tables2 %}
+
 {% block title %}
-Doctor| List 
+Doctor | List 
 {% endblock title %}
+
 {% block content %}
-{% render_table table %}
-<a href="{% url 'admin1:doctor_create' %}" class="btn btn-primary">Create</a>
+  <h1>Doctors List</h1>
+  <!-- {% render_table table %}
+   -->
+
+  <table class="table table-striped mt-4">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Specialization</th>
+        <th>Department</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for doctor in doctors2 %}
+      <tr>
+        <td>{{ doctor.doc_name }}</td>
+        <td>{{ doctor.doc_spec }}</td>
+        <td>{{ doctor.dep_name }}</td>
+        <td>
+          <a href="{% url 'doctor2_detail' doctor.pk %}" class="btn btn-info btn-sm">Detail</a>
+          <a href="{% url 'doctor2_update' doctor.pk %}" class="btn btn-warning btn-sm">Edit</a>
+          <a href="{% url 'doctor2_delete' doctor.pk %}" class="btn btn-danger btn-sm">Delete</a>
+        </td>
+      </tr>
+      {% endfor %}
+      
+    </tbody>
+    
+  </table>
+  <a href="{% url 'doctor2_create' %}" class="btn btn-primary">Add New Doctor2</a>
 {% endblock %}

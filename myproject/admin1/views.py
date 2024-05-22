@@ -19,39 +19,39 @@ def adminhome(request):
 
 # table2
 
-# class Doctor2ListView(SingleTableView):
-#     model = Doctors
-#     template_name = 'admin/doctor/list.html'
-#     context_object_name = 'doctors2'
-#     table_class = DoctorsTable
+class Doctor2ListView(SingleTableView):
+    model = Doctors
+    template_name = 'admin/doctor/list.html'
+    context_object_name = 'doctors2'
+    table_class = DoctorsTable
 
-# class Doctor2DetailView(DetailView):
-#     model = Doctors
-#     template_name = 'admin/doctor/detail.html'
-#     context_object_name = 'doctor2'
+class Doctor2DetailView(DetailView):
+    model = Doctors
+    template_name = 'admin/doctor/detail.html'
+    context_object_name = 'doctor2'
 
-# class Doctor2CreateView(CreateView):
-#     model = Doctors
-#     form_class = DoctorForm
-#     template_name = 'admin/doctor/create.html'
+class Doctor2CreateView(CreateView):
+    model = Doctors
+    form_class = DoctorForm
+    template_name = 'admin/doctor/create.html'
 
-#     def get_success_url(self):
-#         return reverse('doctor2_list')
+    def get_success_url(self):
+        return reverse('doctor2_list')
 
-# class Doctor2UpdateView(UpdateView):
-#     model = Doctors
-#     form_class = DoctorForm
-#     template_name = 'admin/doctor/update.html'
+class Doctor2UpdateView(UpdateView):
+    model = Doctors
+    form_class = DoctorForm
+    template_name = 'admin/doctor/update.html'
 
-#     def get_success_url(self):
-#         return reverse('doctor2_list')
+    def get_success_url(self):
+        return reverse('doctor2_list')
 
-# class Doctor2DeleteView(DeleteView):
-#     model = Doctors
-#     template_name = 'admin/doctor/delete.html'
+class Doctor2DeleteView(DeleteView):
+    model = Doctors
+    template_name = 'admin/doctor/delete.html'
 
-#     def get_success_url(self):
-#         return reverse('doctor2_list')
+    def get_success_url(self):
+        return reverse('doctor2_list')
 
 
 # def add_doctor(request):
