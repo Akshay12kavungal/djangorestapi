@@ -1,0 +1,9 @@
+{% extends "admin/base.html" %}
+{% load django_tables2 %}
+{% block title %}
+Doctor| List 
+{% endblock title %}
+{% block content %}
+{% render_table table %}
+<a href="{% url 'admin1:doctor_create' %}" class="btn btn-primary">Create</a>
+{% endblock %}
