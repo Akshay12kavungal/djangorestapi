@@ -7,6 +7,9 @@ from django.shortcuts import render,redirect, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse
 
+from django_tables2 import SingleTableView
+from .tables import DepartmentTable,DoctorsTable
+
 
 # Create your views here.
 
@@ -14,9 +17,41 @@ from django.urls import reverse
 def adminhome(request):
     return render(request,'admin/home.html')
 
+# table2
 
+# class Doctor2ListView(SingleTableView):
+#     model = Doctors
+#     template_name = 'admin/doctor/list.html'
+#     context_object_name = 'doctors2'
+#     table_class = DoctorsTable
 
+# class Doctor2DetailView(DetailView):
+#     model = Doctors
+#     template_name = 'admin/doctor/detail.html'
+#     context_object_name = 'doctor2'
 
+# class Doctor2CreateView(CreateView):
+#     model = Doctors
+#     form_class = DoctorForm
+#     template_name = 'admin/doctor/create.html'
+
+#     def get_success_url(self):
+#         return reverse('doctor2_list')
+
+# class Doctor2UpdateView(UpdateView):
+#     model = Doctors
+#     form_class = DoctorForm
+#     template_name = 'admin/doctor/update.html'
+
+#     def get_success_url(self):
+#         return reverse('doctor2_list')
+
+# class Doctor2DeleteView(DeleteView):
+#     model = Doctors
+#     template_name = 'admin/doctor/delete.html'
+
+#     def get_success_url(self):
+#         return reverse('doctor2_list')
 
 
 # def add_doctor(request):
@@ -98,3 +133,8 @@ def profile_list(request):
     return render(request,'admin/profile_list.html',{'profile':profile})
 
 
+
+class DepartmentsListView(SingleTableView):
+    model =Departments
+    table_class =DepartmentTable
+    template_name='admin/department/departmentlist_view.html'

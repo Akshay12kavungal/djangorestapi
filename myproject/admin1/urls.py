@@ -1,8 +1,13 @@
 from django.urls import path,include
 from .import views
-from .views import DoctorListView, DoctorDetailView, DoctorCreateView, DoctorUpdateView, DoctorDeleteView
+from .views import (DoctorListView, 
+                    DoctorDetailView, 
+                    DoctorCreateView, 
+                    DoctorUpdateView,
+                    DoctorDeleteView,
+                    DepartmentsListView,
 
-
+)
 
 urlpatterns = [
 
@@ -11,9 +16,7 @@ urlpatterns = [
 
 
     #doctor
-    # path('add-doctor/', views.add_doctor, name='add_doctor'),
-    # path('doctors_lists/', views.doctors_list, name='doctors_lists'),
-
+   
     path('doctors_list/', DoctorListView.as_view(), name='doctor_list'),
     path('doctors_list/create/', DoctorCreateView.as_view(), name='doctor_create'),
     path('doctors_list/<int:pk>/', DoctorDetailView.as_view(), name='doctor_detail'),
@@ -29,6 +32,7 @@ urlpatterns = [
     path('profile_list/', views.profile_list, name='profile_list'),
 
    
+    path("depart/", DepartmentsListView.as_view(),name="department_view")
 
 
    

@@ -1,0 +1,35 @@
+
+
+
+
+
+
+
+{% extends 'admin/base.html' %}
+
+{% block title %}
+{% if form.instance.pk %}Edit Doctor{% else %}Add New Doctor{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container form-container">
+  <h1 class="text-center mb-4">{% if form.instance.pk %}Edit Doctor{% else %}Add New Doctor{% endif %}</h1> 
+  <hr>
+  <div class="row justify-content-center">
+    <div class="col-sm-9 booking-form">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+        
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
