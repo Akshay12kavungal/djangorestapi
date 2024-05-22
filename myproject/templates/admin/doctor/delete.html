@@ -1,22 +1,16 @@
 {% extends "admin/base.html" %}
 
 
-{% block content %}
+
 {% block title %}
 Doctor | Delete
 {% endblock title %}
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <h2>Delete Doctor {{ doctors }}?</h2>
-        <br>
-        <p>Are you sure you want to delete the doctor "{{ doctors }}"?</p>
-        <form method="post">
-            {% csrf_token %}
-            <div class="form-group">
-                <button type="submit" class="btn btn-danger">Yes, delete</button>
-                <a href="{% url 'admin1:doctor_list' %}" class="btn btn-secondary">Cancel</a>
-            </div>
-        </form>
-    </div>
-</div>
-{% endblock content %}
+{% block content %}
+<h1>Confirm Delete</h1>
+<p>Are you sure you want to delete "{{ doctor2.doc_name }}"?</p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Delete</button>
+  <a href="{% url 'doctor2_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
