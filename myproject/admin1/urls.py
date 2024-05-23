@@ -10,6 +10,8 @@ from .views import (DoctorListView,
 )
 from .views import Doctor2ListView, Doctor2DetailView, Doctor2CreateView, Doctor2UpdateView, Doctor2DeleteView
 
+from .views import DepartmentsListView,DepartmentsDetailView,DepartmentsCreateView,DepartmentsUpdateView,DepartmentsDeleteView
+
 urlpatterns = [
 
     path('adminhome/',views.adminhome,name='adminhome'),
@@ -37,11 +39,24 @@ urlpatterns = [
     #department
     path('add_departments/', views.add_departments, name='add_departments'),
     path('departments_list/', views.departments_list.as_view(), name='departments_list'),
+
+
+
+    path('DepartmentsList/', DepartmentsListView.as_view(), name='department_list'),
+    path('DepartmentsList/<int:pk>/', DepartmentsDetailView.as_view(), name='department_detail'),
+    path('DepartmentsList/create/', DepartmentsCreateView.as_view(), name='department_create'),
+    path('DepartmentsList/update/<int:pk>/', DepartmentsUpdateView.as_view(), name='department_update'),
+    path('DepartmentsList/delete/<int:pk>/', DepartmentsDeleteView.as_view(), name='department_delete'),
+
+
     path('booking_list/', views.booking_list, name='booking_list'),
     path('profile_list/', views.profile_list, name='profile_list'),
 
+
+    
+
    
-    path("depart/", DepartmentsListView.as_view(),name="department_view")
+    
 
 
    
