@@ -49,6 +49,7 @@ class Doctor2UpdateView(UpdateView):
 class Doctor2DeleteView(DeleteView):
     model = Doctors
     template_name = 'admin/doctor/delete.html'
+    context_object_name = 'doctor2'
 
     def get_success_url(self):
         return reverse('doctor2_list')
@@ -99,6 +100,7 @@ class DoctorUpdateView(UpdateView):
 class DoctorDeleteView(DeleteView):
     model = Doctors
     template_name = 'admin/doctor_confirm_delete.html'
+    
 
     def get_success_url(self):
         return reverse('doctor_list')
