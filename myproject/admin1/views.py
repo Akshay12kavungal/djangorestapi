@@ -134,7 +134,38 @@ def profile_list(request):
 
 
 
+
 class DepartmentsListView(SingleTableView):
-    model =Departments
-    table_class =DepartmentTable
-    template_name='admin/department/departmentlist_view.html'
+    model = Departments
+    template_name = 'admin/department/list.html'
+    context_object_name = 'dept'
+    table_class = DepartmentTable
+
+class DepartmentsDetailView(DetailView):
+    model = Departments
+    template_name = 'admin/department/detail.html'
+    context_object_name = 'dept'
+
+class DepartmentsCreateView(CreateView):
+    model = Departments
+    form_class = DepartmentsForm
+    template_name = 'admin/department/create.html'
+
+    def get_success_url(self):
+        return reverse('department_list')
+
+class DepartmentsUpdateView(UpdateView):
+    model = Departments
+    form_class = DepartmentsForm
+    template_name = 'admin/department/update.html'
+
+    def get_success_url(self):
+        return reverse('department_list')
+
+class DepartmentsDeleteView(DeleteView):
+    model = Departments
+    template_name = 'admin/department/delete.html'
+    context_object_name = 'dept'
+
+    def get_success_url(self):
+        return reverse('department_list')
