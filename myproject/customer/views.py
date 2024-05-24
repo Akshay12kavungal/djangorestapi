@@ -69,7 +69,7 @@ def login_view(request):
 
     return render(request, 'registration/login.html')
 
-# def Login(request):
+# def login_view(request):
 #     if request.method=='POST':
 #         username=request.POST['username']
 #         password=request.POST['password']
@@ -77,7 +77,7 @@ def login_view(request):
 #         user= authenticate(username=username,password=password)
 #         if user is not None:
 #             login(request,user)
-#             return render(request,'customer/index.html')
+#             return render(request,'customer/customerdashboard.html')
 
 #         else:
 #             return render(request,'registration/login.html')

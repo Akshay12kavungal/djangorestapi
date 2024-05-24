@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'customer',
     'admin1',
-    'django_tables2'
+    'django_tables2',
 ]
 
 MIDDLEWARE = [
