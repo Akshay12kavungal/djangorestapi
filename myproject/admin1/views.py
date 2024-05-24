@@ -11,29 +11,31 @@ from django_tables2 import SingleTableView
 from .tables import DepartmentTable,DoctorsTable
 
 
+
+
 # Create your views here.
 
 
 def adminhome(request):
-    return render(request,'admin/home.html')
+    return render(request,'admintemplate/home.html')
 
 # table2
 
 class Doctor2ListView(SingleTableView):
     model = Doctors
-    template_name = 'admin/doctor/list.html'
+    template_name = 'admintemplate/doctor/list.html'
     context_object_name = 'doctors2'
     table_class = DoctorsTable
 
 class Doctor2DetailView(DetailView):
     model = Doctors
-    template_name = 'admin/doctor/detail.html'
+    template_name = 'admintemplate/doctor/detail.html'
     context_object_name = 'doctor2'
 
 class Doctor2CreateView(CreateView):
     model = Doctors
     form_class = DoctorForm
-    template_name = 'admin/doctor/create.html'
+    template_name = 'admintemplate/doctor/create.html'
 
     def get_success_url(self):
         return reverse('doctor2_list')
@@ -41,14 +43,14 @@ class Doctor2CreateView(CreateView):
 class Doctor2UpdateView(UpdateView):
     model = Doctors
     form_class = DoctorForm
-    template_name = 'admin/doctor/update.html'
+    template_name = 'admintemplate/doctor/update.html'
 
     def get_success_url(self):
         return reverse('doctor2_list')
 
 class Doctor2DeleteView(DeleteView):
     model = Doctors
-    template_name = 'admin/doctor/delete.html'
+    template_name = 'admintemplate/doctor/delete.html'
     context_object_name = 'doctor2'
 
     def get_success_url(self):
@@ -73,17 +75,17 @@ class Doctor2DeleteView(DeleteView):
 
 class DoctorListView(ListView):
     model = Doctors
-    template_name = 'admin/doctor_list.html'
+    template_name = 'admintemplate/doctor_list.html'
     context_object_name = 'doctors'
 
 class DoctorDetailView(DetailView):
     model = Doctors
-    template_name = 'admin/doctor_detail.html'
+    template_name = 'admintemplate/doctor_detail.html'
     context_object_name = 'doctor'
 
 class DoctorCreateView(CreateView):
     model = Doctors
-    template_name = 'admin/doctor_form.html'
+    template_name = 'admintemplate/doctor_form.html'
     fields = ['doc_name', 'doc_spec', 'dep_name','dep_image']
 
     def get_success_url(self):
@@ -91,7 +93,7 @@ class DoctorCreateView(CreateView):
 
 class DoctorUpdateView(UpdateView):
     model = Doctors
-    template_name = 'admin/doctor_form.html'
+    template_name = 'admintemplate/doctor_form.html'
     fields = ['doc_name', 'doc_spec', 'dep_name','dep_image']
 
     def get_success_url(self):
@@ -99,7 +101,7 @@ class DoctorUpdateView(UpdateView):
     
 class DoctorDeleteView(DeleteView):
     model = Doctors
-    template_name = 'admin/doctor_confirm_delete.html'
+    template_name = 'admintemplate/doctor_confirm_delete.html'
     
 
     def get_success_url(self):
@@ -116,10 +118,10 @@ def add_departments(request):
     dict_form={
         'cont_form':cont_form
     }
-    return render(request,'admin/add_departments.html',dict_form)
+    return render(request,'admintemplate/add_departments.html',dict_form)
 
 class departments_list(ListView):
-    template_name ='admin/departments_list.html'
+    template_name ='admintemplate/departments_list.html'
     model=Departments
     context_object_name='dept'
  
@@ -128,30 +130,30 @@ class departments_list(ListView):
 
 def booking_list(request):
     booking=Booking.objects.all()
-    return render(request,'admin/booking_list.html',{'booking':booking})
+    return render(request,'admintemplate/booking_list.html',{'booking':booking})
 
 def profile_list(request):
     profile=Profile.objects.all()
-    return render(request,'admin/profile_list.html',{'profile':profile})
+    return render(request,'admintemplate/profile_list.html',{'profile':profile})
 
 
 
 
 class DepartmentsListView(SingleTableView):
     model = Departments
-    template_name = 'admin/department/list.html'
+    template_name = 'admintemplate/department/list.html'
     context_object_name = 'dept'
     table_class = DepartmentTable
 
 class DepartmentsDetailView(DetailView):
     model = Departments
-    template_name = 'admin/department/detail.html'
+    template_name = 'admintemplate/department/detail.html'
     context_object_name = 'dept'
 
 class DepartmentsCreateView(CreateView):
     model = Departments
     form_class = DepartmentsForm
-    template_name = 'admin/department/create.html'
+    template_name = 'admintemplate/department/create.html'
 
     def get_success_url(self):
         return reverse('department_list')
@@ -159,14 +161,14 @@ class DepartmentsCreateView(CreateView):
 class DepartmentsUpdateView(UpdateView):
     model = Departments
     form_class = DepartmentsForm
-    template_name = 'admin/department/update.html'
+    template_name = 'admintemplate/department/update.html'
 
     def get_success_url(self):
         return reverse('department_list')
 
 class DepartmentsDeleteView(DeleteView):
     model = Departments
-    template_name = 'admin/department/delete.html'
+    template_name = 'admintemplate/department/delete.html'
     context_object_name = 'dept'
 
     def get_success_url(self):
