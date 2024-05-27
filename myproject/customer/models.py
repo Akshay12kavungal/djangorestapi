@@ -7,7 +7,7 @@ from django.db import models
 
 class Departments(models.Model):
     dep_name = models.CharField(max_length=100)
-    dep_description = models.TextField()
+    dep_description = models.CharField(max_length=100)
 
     def __str__(self):
         return self.dep_name
