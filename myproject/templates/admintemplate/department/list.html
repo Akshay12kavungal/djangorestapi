@@ -1,29 +1,19 @@
 
+{% extends "admintemplate/base.html" %}
+{% load django_tables2 %}
 
-   {% extends "admintemplate/base.html" %}
-   {% load django_tables2 %}
-   
-   {% block title %}
-   Department | List
-   {% endblock title %}
-   
-   {% block content %}
-     <h1>Department List</h1>
-   
-     <style>
-       .action-buttons {
-         display: flex;
-       }
-       .action-buttons a {
-         margin-right: 10px; /* Adjust the spacing between buttons */
-       }
-     </style>
-   
-     {% render_table table %}
+{% block title %}
+Department | List
+{% endblock title %}
 
-     <a href="{% url 'department_create' %}" class="btn btn-primary">Add New Department</a> 
-   {% endblock content %}
-   
+{% block content %}
+  <h1>Department List</h1>
+
+   {% render_table table %}
+
+   <a href="{% url 'department_create' %}" class="btn btn-primary">Add New Department</a> 
+
+   {% endblock %}
    
 <!-- 
   <table class="table table-striped mt-4">
@@ -49,4 +39,7 @@
     </tbody>
   </table>
   <a href="{% url 'department_create' %}" class="btn btn-primary">Add New Department</a> -->
+
+
+  
 
