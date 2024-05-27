@@ -3,24 +3,6 @@ import django_tables2 as tables
 
 from customer.models import Departments,Doctors
 
-# class DepartmentTable(tables.Table):
-#     class Meta:
-#         model= Departments
-#         template_name="django_tables2/semantic.html"
-#         fields=("dep_name","dep_description")
-
-
-
-
-class DepartmentTable(tables.Table):
-    class Meta:
-
-        model = Departments
-        fields=("dep_name","dep_description")
-        table_title = "Department"
-        edit_url = "update"
-        detail_url = "detail"
-        delete_url = "delete"
 
 
 
@@ -32,3 +14,20 @@ class DoctorsTable(tables.Table):
         edit_url = "update"
         detail_url = "detail"
         delete_url = "delete"
+
+
+
+class DepartmentTable(tables.Table):
+    actions = tables.TemplateColumn(
+        verbose_name='Actions',
+        template_code='''
+        <a href="{% url "department_update" record.id %}" class="btn btn-warning btn-sm"> Edit</a> |
+        <a href="{% url "department_detail" record.id %}" class="btn btn-info btn-sm">Detail</a> |
+        <a href="{% url "department_delete" record.id %}" class="btn btn-danger btn-sm">Delete</a>
+        '''
+    )
+
+    class Meta:
+        model = Departments
+        fields = ("dep_name", "dep_description", "actions")
+        table_title = "Department"
