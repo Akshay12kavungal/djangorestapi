@@ -1,17 +1,31 @@
-<!-- templates/admin/doctor2/list.html -->
-{% extends "admintemplate/base.html" %}
-{% load django_tables2 %}
 
-{% block title %}
-Department | List
-{% endblock title %}
 
-{% block content %}
-  <h1>Department List</h1>
-
-   <!-- {% render_table table %} -->
+   {% extends "admintemplate/base.html" %}
+   {% load django_tables2 %}
    
+   {% block title %}
+   Department | List
+   {% endblock title %}
+   
+   {% block content %}
+     <h1>Department List</h1>
+   
+     <style>
+       .action-buttons {
+         display: flex;
+       }
+       .action-buttons a {
+         margin-right: 10px; /* Adjust the spacing between buttons */
+       }
+     </style>
+   
+     {% render_table table %}
 
+     <a href="{% url 'department_create' %}" class="btn btn-primary">Add New Department</a> 
+   {% endblock content %}
+   
+   
+<!-- 
   <table class="table table-striped mt-4">
     <thead>
       <tr>
@@ -34,8 +48,5 @@ Department | List
       {% endfor %}
     </tbody>
   </table>
-  <a href="{% url 'department_create' %}" class="btn btn-primary">Add New Department</a>
+  <a href="{% url 'department_create' %}" class="btn btn-primary">Add New Department</a> -->
 
-
-  
-{% endblock %}
