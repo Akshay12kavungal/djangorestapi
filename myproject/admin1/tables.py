@@ -35,6 +35,7 @@ class DoctorsTable(tables.Table):
         model = Doctors
         fields = ("doc_name", "doc_spec", "dep_name", "dep_image", "actions")
         table_title = "Doctors2"
+        template_name = "django_tables2/bootstrap5-responsive.html"
 
 
 
