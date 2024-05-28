@@ -1,30 +1,56 @@
-from django.urls import path,include
-from .import views
+from django.urls import path, include
+from . import views
 from .views import login_view
 
+from rest_framework.routers import DefaultRouter
+from customer.api.views import(
+     DepartmentSerializerViewset,
+     DoctorsSerializerViewset,
+     BookingSerializerViewset,
+     ContactSerializerViewset,
+     ProfileSerializerViewset,
 
+
+)
+
+
+router = DefaultRouter()
+router.register(r'department-api', DepartmentSerializerViewset, basename='department-router')
+router.register(r'doctor-api', DoctorsSerializerViewset, basename='doctor-router')
+router.register(r'booking-api', BookingSerializerViewset, basename='booking-router')
+router.register(r'contact-api', ContactSerializerViewset, basename='contact-router')
+router.register(r'profile-api', ProfileSerializerViewset, basename='profile-router')
+
+
+
+router_urls = [
+    path('', include(router.urls)),
+]
 
 urlpatterns = [
 
-    path('',views.home,name='home'),
-    path('customerdashboard',views.customerdashboard,name='customerdashboard'),
-    
-    path('about/',views.about,name='about'),
-    path('booking/',views.booking,name='booking'),
-    path('doctors/',views.doctors,name='doctors'),
-    path('contact/',views.contact,name='contact'),
-    path('departments/',views.departments,name='departments'),
-    path('Register/',views.Register,name='Register'),
-    #path('login/',views.Login,name='login'),
-    path('logout/',views.Logout,name='logout'),
-    path('profile/',views.profile,name='profile'),
+    path('', views.home, name='home'),
+    path('customerdashboard/', views.customerdashboard, name='customerdashboard'),
+    path('about/', views.about, name='about'),
+    path('booking/', views.booking, name='booking'),
+    path('doctors/', views.doctors, name='doctors'),
+    path('contact/', views.contact, name='contact'),
+    path('departments/', views.departments, name='departments'),
+    path('Register/', views.Register, name='Register'),
+    path('logout/', views.Logout, name='logout'),
+    path('profile/', views.profile, name='profile'),
     path('profile/update/', views.profile_update, name='profile_update'),
     path('my_appointments/', views.my_appointments, name='my_appointments'),
 
-    path('login/', login_view, name='login'),  # URL for the login page
-    #htmx
-    path('check_username/', views.check_username, name='check_username'),
-   
 
+    path('login/', login_view, name='login'),
+
+    path('check_username/', views.check_username, name='check_username'),
 ]
+
+
+urlpatterns += router_urls
+
+
+
 

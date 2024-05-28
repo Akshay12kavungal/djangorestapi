@@ -117,7 +117,7 @@ def contact(request):
         cont_form=ContactForm(request.POST)
         if cont_form.is_valid():
             cont_form.save()
-            return redirect('index')
+            return redirect('customerdashboard')
     cont_form=ContactForm()
     dict_form={
         'cont_form':cont_form

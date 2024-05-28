@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'customer',
     'admin1',
     'django_tables2',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
