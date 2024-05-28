@@ -26,7 +26,7 @@ class Doctor2ListView(SingleTableView):
     template_name = 'admintemplate/doctor/list.html'
     context_object_name = 'doctors2'
     table_class = DoctorsTable
-
+    
 class Doctor2DetailView(DetailView):
     model = Doctors
     template_name = 'admintemplate/doctor/detail.html'
@@ -144,6 +144,7 @@ class DepartmentsListView(SingleTableView):
     template_name = 'admintemplate/department/list.html'
     context_object_name = 'dept'
     table_class = DepartmentTable
+    
 
 class DepartmentsDetailView(DetailView):
     model = Departments
