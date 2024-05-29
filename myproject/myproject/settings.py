@@ -153,9 +153,18 @@ LOGOUT_REDIRECT_URL ='home'
 
 DJANGO_TABLES2_TEMPLATE = "django_tables2/semantic.html"
 
+
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+    ]
+}
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
     ]
 }
