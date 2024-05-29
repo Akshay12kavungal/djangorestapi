@@ -5,6 +5,7 @@ from customer.models import (
     Booking,
     Profile,
     Contact,
+    User,
 
 )
 
@@ -31,3 +32,33 @@ class ContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contact
         fields ="__all__"
+
+class UserSerializer(serializers.ModelSerializer):
+    confirm_password = serializers.CharField(write_only=True)
+    class Meta:
+        model = User
+        fields =["username","first_name","last_name","email","password","confirm_password"]
+
+    def save(self):
+        reg=User(
+            email=self.validated_data['email'],
+            username=self.validated_data['username'],
+            first_name=self.validated_data['first_name'],
+            last_name=self.validated_data['last_name'],
+        
+
+        )
+        password=self.validated_data['password']
+        confirm_password=self.validated_data['confirm_password']
+
+        if password!=confirm_password:
+            raise serializers.ValidationError({'password':'password does not match'})
+        reg.set_password(password)
+        reg.save()
+        Profile.objects.create(
+                user=reg,
+                first_name=self.validated_data['first_name'],
+                last_name=self.validated_data['last_name'],
+                email=self.validated_data['email'],
+            )
+        return reg

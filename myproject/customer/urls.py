@@ -1,6 +1,7 @@
 from django.urls import path, include
 from . import views
 from .views import login_view
+from customer.api.views import LoginAPI
 
 from rest_framework.routers import DefaultRouter
 from customer.api.views import(
@@ -9,6 +10,8 @@ from customer.api.views import(
      BookingSerializerViewset,
      ContactSerializerViewset,
      ProfileSerializerViewset,
+     UserSerializerViewset,
+     
 
 
 )
@@ -20,15 +23,17 @@ router.register(r'doctor-api', DoctorsSerializerViewset, basename='doctor-router
 router.register(r'booking-api', BookingSerializerViewset, basename='booking-router')
 router.register(r'contact-api', ContactSerializerViewset, basename='contact-router')
 router.register(r'profile-api', ProfileSerializerViewset, basename='profile-router')
-
+router.register(r'registeration-api', UserSerializerViewset, basename='registeration-router')
 
 
 router_urls = [
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
+    path('api/login/', LoginAPI.as_view(), name='login_api'),
 ]
 
 urlpatterns = [
 
+#customer   
     path('', views.home, name='home'),
     path('customerdashboard/', views.customerdashboard, name='customerdashboard'),
     path('about/', views.about, name='about'),
