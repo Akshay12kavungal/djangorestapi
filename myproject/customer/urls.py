@@ -15,6 +15,7 @@ from customer.api.views import(
 
 
 )
+from rest_framework.permissions import AllowAny
 
 
 router = DefaultRouter()
@@ -26,9 +27,17 @@ router.register(r'profile-api', ProfileSerializerViewset, basename='profile-rout
 router.register(r'registeration-api', UserSerializerViewset, basename='registeration-router')
 
 
+
+
+class CustomAPIRootView(DefaultRouter.APIRootView):
+    permission_classes = [AllowAny]
+
+
+router.APIRootView = CustomAPIRootView
+
 router_urls = [
     path('api/', include(router.urls)),
-    path('api/login/', LoginAPI.as_view(), name='login_api'),
+    path('api/login-api/', LoginAPI.as_view(), name='login_api'),
 ]
 
 urlpatterns = [
