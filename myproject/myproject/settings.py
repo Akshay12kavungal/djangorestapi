@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django_tables2',
     'rest_framework',
     'rest_framework.authtoken',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -167,4 +168,15 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ]
+}
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Token': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header',
+        },
+    },
+    'USE_SESSION_AUTH': False,  # Disable session authentication
 }
