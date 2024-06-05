@@ -17,6 +17,9 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.permissions import AllowAny
 
+from rest_framework import generics,mixins
+from django.contrib.auth.models import User
+
 class DepartmentSerializerViewset(viewsets.ModelViewSet):
     serializer_class=DepartmentSerializer
     queryset=DepartmentSerializer.Meta.model.objects.all()
@@ -70,3 +73,33 @@ class LoginAPI(APIView):
             return Response({'error':'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
     
 
+
+class UserList(generics.ListCreateAPIView,mixins.ListModelMixin,mixins.CreateModelMixin):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get(self,request,*args,**kwargs):
+        return self.list(request, *args, **kwargs)
+    
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+
+class UserRetrieveUpdateDestroyAPIView(generics.GenericAPIView, 
+                                       mixins.RetrieveModelMixin, 
+                                       mixins.UpdateModelMixin, 
+                                       mixins.DestroyModelMixin):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+    
